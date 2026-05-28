@@ -1,6 +1,6 @@
 {
   "name": "wx-codex",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "Local MCP server and CLI bridge from Codex to WeChat DevTools.",
   "type": "module",
   "bin": {
