@@ -4,7 +4,7 @@
   "description": "Local MCP server and CLI bridge from Codex to WeChat DevTools.",
   "type": "module",
   "bin": {
-    "wx-codex": "./dist/cli/main.js"
+    "wx-codex": "dist/cli/main.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -37,13 +37,13 @@
     "devtools",
     "mini-program"
   ],
-  "homepage": "https://github.com/wxml-tools/wx-codex#readme",
+  "homepage": "https://github.com/ivar8990/wx-codex#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wxml-tools/wx-codex.git"
+    "url": "git+https://github.com/ivar8990/wx-codex.git"
   },
   "bugs": {
-    "url": "https://github.com/wxml-tools/wx-codex/issues"
+    "url": "https://github.com/ivar8990/wx-codex/issues"
   },
   "files": [
     "dist",
