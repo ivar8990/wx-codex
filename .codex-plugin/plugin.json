@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.2",
   "description": "Bridge Codex to WeChat DevTools for mini program preview workflows.",
   "author": {
-    "name": "WXML Tools"
+    "name": "Ivar Yang"
   },
   "license": "Apache-2.0",
   "skills": "skills",
@@ -12,7 +12,7 @@
     "displayName": "WX-Codex",
     "shortDescription": "Bridge Codex to WeChat DevTools for mini program previews.",
     "longDescription": "A local MCP bridge that lets Codex detect WeChat DevTools, read mini program project config, open projects, and trigger preview builds.",
-    "developerName": "WXML Tools",
+    "developerName": "Ivar Yang",
     "category": "Developer Tools",
     "capabilities": [
       "Detect WeChat DevTools CLI",
