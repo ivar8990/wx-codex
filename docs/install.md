@@ -1,5 +1,7 @@
 # Install
 
+WX-Codex extends the local WeChat DevTools workflow. It does not replace WeChat DevTools. For the full workflow, Codex, the mini program project, and WeChat DevTools should run on the same machine.
+
 ## Alpha Install From npm
 
 Install the current alpha:
@@ -26,7 +28,7 @@ Generate a preview QR code:
 wx-codex preview --project /absolute/path/to/miniprogram
 ```
 
-Preview requires WeChat DevTools to be installed, the service port to be enabled, login to be complete, and the mini program project to use a real AppID.
+Preview requires WeChat DevTools to be installed locally, login to be complete, the service port to be enabled, and the mini program project to use a real AppID.
 
 ## Source Install
 

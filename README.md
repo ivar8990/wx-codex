@@ -2,6 +2,10 @@
 
 Bridge Codex to WeChat DevTools so AI-assisted mini program development can happen outside WeChat DevTools while WeChat DevTools still handles preview, platform runtime, and QR code generation.
 
+WX-Codex extends the local WeChat DevTools workflow. It does not replace WeChat DevTools. Codex, the mini program project, and WeChat DevTools should run on the same machine for the full edit, inspect, open, and preview loop.
+
+WeChat DevTools remains responsible for the official runtime, login, AppID validation, project recognition, previews, uploads, and Cloud Development console workflows. WX-Codex helps Codex understand and modify local project files, create common mini program building blocks, and call the local WeChat DevTools CLI when a preview is needed.
+
 ## What It Does
 
 WX-Codex is a local MCP-based developer tool for WeChat mini program workflows.
@@ -11,6 +15,9 @@ The MVP supports:
 - detecting the local WeChat DevTools CLI
 - checking the local setup with `doctor`
 - reading `project.config.json`
+- inspecting mini program project structure
+- listing pages, custom components, and cloud functions
+- creating page, component, and cloud function templates
 - opening a mini program project in WeChat DevTools
 - triggering preview builds
 - generating preview QR codes
@@ -35,12 +42,13 @@ Codex / MCP client
   -> preview QR code / CLI output
 ```
 
-This project does not replace WeChat DevTools. It uses WeChat DevTools as the official preview and runtime channel.
+This project uses WeChat DevTools as the official preview and runtime channel.
 
 ## Requirements
 
 - Node.js 20+
 - WeChat DevTools installed locally
+- WeChat DevTools login completed
 - WeChat DevTools service port enabled
 - A WeChat mini program project containing `project.config.json`
 
@@ -135,6 +143,23 @@ Detect WeChat DevTools directly:
 npm run devtools:detect
 ```
 
+Inspect the demo project structure:
+
+```bash
+npm run cli -- inspect --project examples/demo-miniprogram
+npm run cli -- pages --project examples/demo-miniprogram
+npm run cli -- components --project examples/demo-miniprogram
+npm run cli -- cloud list --project examples/demo-miniprogram
+```
+
+Create starter files:
+
+```bash
+npm run cli -- create page --project examples/demo-miniprogram --path pages/profile/index --title Profile
+npm run cli -- create component --project examples/demo-miniprogram --path components/user-card/index
+npm run cli -- create cloud-function --project examples/demo-miniprogram --name getOpenId
+```
+
 ## Demo Mini Program
 
 The demo mini program lives here:
@@ -193,6 +218,25 @@ Use `--verbose` or `--json` when you need the full WeChat DevTools CLI output.
 
 The MCP `preview_project` tool uses the same default QR output behavior when called with `qrFormat: "image"` and no `qrOutput`.
 
+## WeChat Cloud Development
+
+WX-Codex can inspect WeChat Cloud Development project structure when `project.config.json` defines `cloudfunctionRoot`.
+
+Current alpha support:
+
+- detect `cloudfunctionRoot`
+- list cloud function directories
+- read each cloud function entry file from `package.json` or `index.js`
+- list cloud function dependencies
+- create local cloud function templates
+- list Cloud Development environments through WeChat DevTools CLI
+- list, inspect, and explicitly deploy named remote cloud functions through WeChat DevTools CLI
+- show cloud development structure in `doctor` and `inspect`
+
+Remote Cloud Development operations require WeChat DevTools to be logged in and the Cloud Development console to be available for the AppID. If a CloudBase command returns a platform or system error, open WeChat DevTools and confirm the cloud environment there first.
+
+Database, storage, and cloud environment management are not wrapped yet. Deploying cloud functions should remain an explicit user-confirmed action after reviewing local code changes.
+
 ## MCP Tools
 
 The server currently exposes:
@@ -200,6 +244,13 @@ The server currently exposes:
 - `doctor`: check local Node.js, WeChat DevTools CLI, project root, config, and AppID state
 - `detect_devtools`: detect the WeChat DevTools CLI path
 - `read_project_config`: read a mini program `project.config.json`
+- `inspect_project`: inspect pages, components, cloud functions, and common project warnings
+- `list_pages`: list pages declared by `app.json`
+- `list_components`: list custom components declared or discovered in the project
+- `list_cloud_functions`: list WeChat Cloud Development cloud functions
+- `create_page`: create page files and update `app.json`
+- `create_component`: create custom component files
+- `create_cloud_function`: create a local cloud function template
 - `open_project`: open a mini program project in WeChat DevTools
 - `preview_project`: trigger a WeChat DevTools preview build and optionally save QR output
 
@@ -225,6 +276,16 @@ The npm CLI entry point is:
 wx-codex server
 wx-codex doctor
 wx-codex detect
+wx-codex inspect --project /path/to/miniprogram
+wx-codex pages --project /path/to/miniprogram
+wx-codex components --project /path/to/miniprogram
+wx-codex cloud list --project /path/to/miniprogram
+wx-codex cloud envs --project /path/to/miniprogram
+wx-codex cloud remote-list --project /path/to/miniprogram --env <env-id>
+wx-codex cloud deploy --project /path/to/miniprogram --env <env-id> --names getOpenId --remote-npm-install
+wx-codex create page --project /path/to/miniprogram --path pages/profile/index --title Profile
+wx-codex create component --project /path/to/miniprogram --path components/user-card/index
+wx-codex create cloud-function --project /path/to/miniprogram --name getOpenId
 wx-codex open --project /path/to/miniprogram
 wx-codex preview --project /path/to/miniprogram
 ```

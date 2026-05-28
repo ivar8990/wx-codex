@@ -1,0 +1,7 @@
+<view class="card status-{{status}}">
+  <view class="header">
+    <view class="title">{{title}}</view>
+    <view class="status">{{status}}</view>
+  </view>
+  <view class="description">{{description}}</view>
+</view>

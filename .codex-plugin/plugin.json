@@ -1,7 +1,7 @@
 {
   "name": "wx-codex",
-  "version": "0.1.0-alpha.2",
-  "description": "Bridge Codex to WeChat DevTools for mini program preview workflows.",
+  "version": "0.1.0-alpha.3",
+  "description": "Extend local WeChat DevTools workflows with Codex-assisted mini program development.",
   "author": {
     "name": "Ivar Yang"
   },
@@ -10,17 +10,21 @@
   "mcpServers": ".mcp.json",
   "interface": {
     "displayName": "WX-Codex",
-    "shortDescription": "Bridge Codex to WeChat DevTools for mini program previews.",
-    "longDescription": "A local MCP bridge that lets Codex detect WeChat DevTools, read mini program project config, open projects, and trigger preview builds.",
+    "shortDescription": "Extend local WeChat DevTools workflows with Codex.",
+    "longDescription": "A local MCP bridge that helps Codex inspect and modify WeChat mini program projects while WeChat DevTools remains the official runtime, preview, login, and Cloud Development channel.",
     "developerName": "Ivar Yang",
     "category": "Developer Tools",
     "capabilities": [
       "Detect WeChat DevTools CLI",
+      "Inspect mini program project structure",
+      "List pages, custom components, and cloud functions",
+      "Create page, component, and cloud function templates",
+      "Inspect and deploy named Cloud Development functions",
       "Read mini program project config",
       "Open mini program projects",
       "Trigger preview builds"
     ],
     "brandColor": "#111827",
-    "defaultPrompt": "Use WX-Codex to work with local WeChat mini program projects. Detect WeChat DevTools first, read project.config.json, then open or preview the project when requested."
+    "defaultPrompt": "Use WX-Codex to work with local WeChat mini program projects. Inspect the project structure first, detect WeChat DevTools when preview is needed, then open or preview the project when requested."
   }
 }

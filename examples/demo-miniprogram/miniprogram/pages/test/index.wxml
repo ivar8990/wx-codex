@@ -1,0 +1,14 @@
+<view class="page">
+  <view class="title">{{title}}</view>
+  <view class="subtitle">Page, component, and cloud function integration test.</view>
+
+  <test-card
+    title="Cloud Function"
+    description="{{resultText}}"
+    status="{{status}}"
+  />
+
+  <button class="button" loading="{{loading}}" bindtap="callTestCloud">
+    Call testCloud
+  </button>
+</view>

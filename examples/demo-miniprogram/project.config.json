@@ -4,6 +4,7 @@
   "libVersion": "latest",
   "projectname": "wx-codex-demo",
   "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
   "setting": {
     "urlCheck": false,
     "es6": true,

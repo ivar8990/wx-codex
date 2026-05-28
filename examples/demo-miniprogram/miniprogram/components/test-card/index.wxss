@@ -1,0 +1,44 @@
+.card {
+  display: block;
+  margin-top: 32rpx;
+  padding: 28rpx;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #111827;
+}
+
+.status {
+  padding: 6rpx 12rpx;
+  border-radius: 8rpx;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 22rpx;
+}
+
+.description {
+  margin-top: 20rpx;
+  color: #334155;
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.status-success {
+  border-color: #86efac;
+}
+
+.status-error {
+  border-color: #fca5a5;
+}

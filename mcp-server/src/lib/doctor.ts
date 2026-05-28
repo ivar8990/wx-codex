@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 
 import { detectDevTools, probeIde } from "./devtools.js";
+import { inspectProject } from "./project-inspect.js";
 import { readProjectConfig } from "./project-config.js";
 
 export type DoctorCheck = {
@@ -100,11 +101,48 @@ async function addProjectConfigChecks(checks: DoctorCheck[], projectPath: string
           ? `Using AppID ${config.appid}.`
           : "Using touristappid or missing AppID. Opening can work, but CLI preview needs a real AppID.",
     });
+
+    await addProjectStructureChecks(checks, projectPath);
   } catch (error) {
     checks.push({
       name: "project.config.json",
       status: "fail",
       message: error instanceof Error ? error.message : "Unable to read project.config.json.",
+    });
+  }
+}
+
+async function addProjectStructureChecks(checks: DoctorCheck[], projectPath: string): Promise<void> {
+  const inspection = await inspectProject(projectPath);
+  checks.push({
+    name: "Pages",
+    status: inspection.pages.length > 0 ? "pass" : "warn",
+    message:
+      inspection.pages.length > 0
+        ? `Found ${inspection.pages.length} page${inspection.pages.length === 1 ? "" : "s"}.`
+        : "No pages found in app.json.",
+  });
+
+  checks.push({
+    name: "Custom components",
+    status: "pass",
+    message: `Found ${inspection.components.length} custom component${inspection.components.length === 1 ? "" : "s"}.`,
+  });
+
+  if (inspection.cloudfunctionRoot) {
+    checks.push({
+      name: "Cloud function root",
+      status: inspection.cloudfunctionPath && existsSync(inspection.cloudfunctionPath) ? "pass" : "warn",
+      message:
+        inspection.cloudfunctionPath && existsSync(inspection.cloudfunctionPath)
+          ? `Found ${inspection.cloudFunctions.length} cloud function${inspection.cloudFunctions.length === 1 ? "" : "s"} in ${inspection.cloudfunctionRoot}.`
+          : `Configured as ${inspection.cloudfunctionRoot}, but the directory was not found.`,
+    });
+  } else {
+    checks.push({
+      name: "Cloud development",
+      status: "warn",
+      message: "No cloudfunctionRoot configured. This is fine for non-cloud mini programs.",
     });
   }
 }

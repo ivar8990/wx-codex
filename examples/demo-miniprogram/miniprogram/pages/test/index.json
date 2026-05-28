@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Test",
+  "usingComponents": {
+    "test-card": "/components/test-card/index"
+  }
+}

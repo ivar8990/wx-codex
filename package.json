@@ -1,6 +1,6 @@
 {
   "name": "wx-codex-workspace",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,6 +9,7 @@
     "cli": "node mcp-server/dist/cli/main.js",
     "devtools:detect": "node mcp-server/dist/cli/detect-devtools.js",
     "doctor": "node mcp-server/dist/cli/doctor.js",
+    "smoke": "node mcp-server/scripts/smoke-test.mjs",
     "pack:dry-run": "npm pack --dry-run --workspace wx-codex"
   },
   "workspaces": [
