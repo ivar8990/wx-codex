@@ -1,0 +1,14 @@
+{
+  "appid": "your-mini-program-appid",
+  "compileType": "miniprogram",
+  "libVersion": "latest",
+  "projectname": "wx-codex-demo",
+  "miniprogramRoot": "miniprogram/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  }
+}
