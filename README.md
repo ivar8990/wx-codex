@@ -64,7 +64,37 @@ If auto-detection fails, set:
 WECHAT_DEVTOOLS_CLI=C:\path\to\cli.bat
 ```
 
+## Alpha Install
+
+Install the current alpha from npm:
+
+```bash
+npm install -g wx-codex@alpha
+```
+
+Check your local setup:
+
+```bash
+wx-codex doctor
+```
+
+Open a mini program project in WeChat DevTools:
+
+```bash
+wx-codex open --project "/absolute/path/to/miniprogram"
+```
+
+Generate a preview QR code:
+
+```bash
+wx-codex preview --project "/absolute/path/to/miniprogram"
+```
+
+Preview requires WeChat DevTools to be installed, the service port to be enabled, login to be complete, and the mini program project to use a real AppID.
+
 ## Quick Start
+
+Use this section when developing WX-Codex from source.
 
 Install dependencies and build:
 

@@ -1,13 +1,45 @@
 # Install
 
-## 1. Install Dependencies
+## Alpha Install From npm
+
+Install the current alpha:
+
+```bash
+npm install -g wx-codex@alpha
+```
+
+Check the local environment:
+
+```bash
+wx-codex doctor
+```
+
+Open a mini program project:
+
+```bash
+wx-codex open --project /absolute/path/to/miniprogram
+```
+
+Generate a preview QR code:
+
+```bash
+wx-codex preview --project /absolute/path/to/miniprogram
+```
+
+Preview requires WeChat DevTools to be installed, the service port to be enabled, login to be complete, and the mini program project to use a real AppID.
+
+## Source Install
+
+Use this section when developing WX-Codex from source.
+
+### 1. Install Dependencies
 
 ```bash
 npm install
 npm run build
 ```
 
-## 2. Confirm WeChat DevTools CLI
+### 2. Confirm WeChat DevTools CLI
 
 Run the doctor first:
 
@@ -41,7 +73,7 @@ Doctor checks:
 - `project.config.json`
 - whether the demo uses a real AppID
 
-## 3. Add The MCP Server
+### 3. Add The MCP Server
 
 During development, point Codex at `.mcp.json` from this repository.
 
@@ -51,7 +83,7 @@ The server command is:
 node ./mcp-server/dist/index.js
 ```
 
-## 4. Test With The Demo Project
+### 4. Test With The Demo Project
 
 Use:
 
